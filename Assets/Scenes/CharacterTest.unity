@@ -449,11 +449,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 6
+  jumpForce: 10
   groundCheckDistance: 1.4
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  dashDuration: 0.3
+  dashSpeed: 18
+  dashCooldown: 1.5
 --- !u!50 &797423572
 Rigidbody2D:
   serializedVersion: 4
@@ -469,8 +472,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 3
+  m_Material: {fileID: 6200000, guid: d285013c1c6ce6356b99ecf0b2c53cd8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

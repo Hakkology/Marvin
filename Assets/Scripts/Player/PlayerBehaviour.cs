@@ -15,6 +15,16 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
+    [Header("Dash Values")]
+    [SerializeField]
+    private float dashDuration;
+    [SerializeField]
+    private float dashSpeed;
+    [SerializeField]
+    private float dashCooldown;
+    private float dashCooldownTimer;
+    private float dashTime;
+
     // INTERNAL VALUES
 
     // for lateral movement
@@ -24,6 +34,8 @@ public class PlayerBehaviour : MonoBehaviour
     private bool facingRight = true;
     // grounding
     private bool isGrounded;
+    // dash
+
 
     // REFERENCES
     private Rigidbody2D rb;
@@ -39,25 +51,49 @@ public class PlayerBehaviour : MonoBehaviour
     {
         MovementController();
         FlipController();
+        DashController();
         InputController();
         AnimatorControllers();
         CollisionChecks();
     }
 
-    private void CollisionChecks()
+    private void DashController()
     {
-        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
+        dashTime -= Time.deltaTime;
+        dashCooldownTimer -= Time.deltaTime;
     }
 
     private void InputController()
     {
         xInput = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) DashAbility();
+    }
+
+    private void DashAbility()
+    {
+        if (dashCooldownTimer <0)
+        {
+            dashCooldownTimer = dashCooldown;
+            dashTime = dashDuration;
+        }
+    }
+    private void CollisionChecks()
+    {
+        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
     }
 
     private void MovementController()
     {
-        rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+        if (dashTime > 0)
+        {
+            rb.velocity = new Vector2(xInput * dashSpeed, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+        }
+        
     }
     private void Jump()
     {
@@ -70,6 +106,7 @@ public class PlayerBehaviour : MonoBehaviour
         anim.SetBool("IsMoving", isMoving);
         anim.SetBool("IsGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetBool("IsDashing", dashTime > 0);
     }
 
     private void Flip()
