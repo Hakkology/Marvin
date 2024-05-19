@@ -16,7 +16,7 @@ public class PlayerMoveState : PlayerState
 
         base.Update();
 
-        player.SetVelocity(xInput * player.moveSpeed, player.playerRb.velocity.y);
+        player.SetVelocity(xInput * player.moveSpeed, playerRB.velocity.y);
     }
 
     public override void Exit()
