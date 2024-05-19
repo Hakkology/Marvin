@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 797423572}
   - component: {fileID: 797423575}
   - component: {fileID: 797423570}
+  - component: {fileID: 797423576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -443,7 +444,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797423569}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e84659d1343e024f8c1a5c7f073fb13, type: 3}
   m_Name: 
@@ -535,6 +536,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.069306135, y: -0.2752868}
   m_Size: {x: 0.8, y: 2}
   m_Direction: 0
+--- !u!114 &797423576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797423569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea7cc0d708c08feaba50f1c4594d17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1624637513
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +866,7 @@ Animator:
   m_GameObject: {fileID: 1918964933}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4788d65e196b10e1d86464ea13de1e19, type: 2}
+  m_Controller: {fileID: 9100000, guid: e085b905e8a413ac39de10f459750b96, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

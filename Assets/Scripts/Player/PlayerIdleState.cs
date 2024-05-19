@@ -12,7 +12,11 @@ public class PlayerIdleState : PlayerState
 
     public override void Update()
     {
+        if (xInput != 0)
+            stateMachine.ChangeState(player.moveState);
+
         base.Update();
+
     }
 
     public override void Exit()
