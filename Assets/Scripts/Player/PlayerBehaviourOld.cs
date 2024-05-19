@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviourOld : MonoBehaviour
 {
     [Header("Movement Values")]
     [SerializeField]
