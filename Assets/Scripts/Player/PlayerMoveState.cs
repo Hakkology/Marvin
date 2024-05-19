@@ -1,4 +1,4 @@
-public class PlayerMoveState : PlayerState
+public class PlayerMoveState : PlayerGroundedState
 {
     public PlayerMoveState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -11,8 +11,8 @@ public class PlayerMoveState : PlayerState
 
     public override void Update()
     {
-        if(xInput == 0)
-            stateMachine.ChangeState(player.idleState);
+        if (xInput == 0 || player.IsWallDetected())
+                stateMachine.ChangeState(player.idleState);
 
         base.Update();
 
