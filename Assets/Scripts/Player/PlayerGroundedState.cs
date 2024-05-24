@@ -21,7 +21,10 @@ public class PlayerGroundedState : PlayerState
         // is ground detected eklemezsek bu sefer düşmanların üstünden atlayabilir.
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
             stateMachine.ChangeState(player.jumpState);
-
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            stateMachine.ChangeState(player.primaryAttackState);
+        
         // if (Input.GetKeyDown(KeyCode.LeftShift))
         //     stateMachine.ChangeState(player.dashState);
         
