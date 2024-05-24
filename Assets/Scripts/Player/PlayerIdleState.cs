@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
 
-        playerRB.velocity = new Vector2(0,0);
+        player.ZeroVelocity();
     }
 
     public override void Update()
@@ -21,7 +21,7 @@ public class PlayerIdleState : PlayerGroundedState
         if (xInput == player.facingDirection && player.IsWallDetected())
             return;
 
-        if (xInput != 0)
+        if (xInput != 0 && !player.IsBusy)
             stateMachine.ChangeState(player.moveState);
     }
 
