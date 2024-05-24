@@ -16,15 +16,15 @@ public class PlayerWallSlideState : PlayerState
     {
         base.Update();
 
-        if (player.IsWallDetected() == false)
-            stateMachine.ChangeState(player.airState);
+        // if (player.IsWallDetected() == false)
+        //     stateMachine.ChangeState(player.airState);
 
-
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     stateMachine.ChangeState(player.wallJump);
-        //     return;
-        // }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            stateMachine.ChangeState(player.wallJumpState);
+            return;
+            // sonrasını devam etmesini istemiyoruz.
+        }
 
         if (xInput != 0 && player.facingDirection != xInput)
                 stateMachine.ChangeState(player.idleState);
