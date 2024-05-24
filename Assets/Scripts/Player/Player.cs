@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
 
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
     public bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, groundLayer);
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     private void OnDrawGizmos() 
     {

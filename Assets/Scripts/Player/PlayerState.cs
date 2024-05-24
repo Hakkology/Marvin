@@ -8,6 +8,7 @@ public class PlayerState
     protected float xInput;
     protected float yInput;
     protected float stateTimer;
+    protected bool triggerCalled;
 
 
     private string animBoolName;
@@ -22,6 +23,7 @@ public class PlayerState
     {
         playerRB = player.playerRb;
         player.playerAnim.SetBool(animBoolName, true);
+        triggerCalled = false;
     }
     public virtual void Update()
     {
@@ -34,6 +36,10 @@ public class PlayerState
     public virtual void Exit()
     {
         player.playerAnim.SetBool(animBoolName, false);
+    }
+
+    public virtual void AnimationFinishTrigger(){
+        triggerCalled = true;
     }
 
 
