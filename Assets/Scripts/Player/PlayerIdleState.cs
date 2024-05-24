@@ -12,14 +12,13 @@ public class PlayerIdleState : PlayerGroundedState
 
     public override void Update()
     {
+        base.Update();
+
         if (xInput != 0)
             stateMachine.ChangeState(player.moveState);
 
         if (xInput == player.facingDirection && player.IsWallDetected())
             return;
-            
-        base.Update();
-
     }
 
     public override void Exit()
