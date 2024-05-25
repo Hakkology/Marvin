@@ -1,9 +1,8 @@
-public class EnemySkeletonIdleState : EnemyState
+public class EnemySkeletonIdleState : EnemySkeletonGroundedState
 {
-    EnemySkeleton enemySkeleton;
-    public EnemySkeletonIdleState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemySkeleton) : base(_enemySkeleton, _stateMachine, _animBoolName)
+    public EnemySkeletonIdleState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemySkeleton) : base(_enemy, _stateMachine, _animBoolName, _enemySkeleton)
     {
-        enemySkeleton = _enemySkeleton;
+    
     }
 
     public override void Enter()
@@ -19,6 +18,9 @@ public class EnemySkeletonIdleState : EnemyState
 
         if (stateTimer < 0)
             stateMachine.ChangeState(enemySkeleton.moveState);
+        
+        // if (enemy.IsPlayerDetected())
+        //     stateMachine.ChangeState(enemySkeleton.battleState);
     }
 
     public override void Exit()

@@ -1,10 +1,8 @@
-public class EnemySkeletonMoveState : EnemyState
+public class EnemySkeletonMoveState : EnemySkeletonGroundedState
 {
-    private EnemySkeleton enemySkeleton;
-    public EnemySkeletonMoveState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemySkeleton) 
-    : base(_enemySkeleton, _stateMachine, _animBoolName)
+    public EnemySkeletonMoveState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemySkeleton) : base(_enemy, _stateMachine, _animBoolName, _enemySkeleton)
     {
-        enemySkeleton = _enemySkeleton;
+        
     }
 
     public override void Enter()
