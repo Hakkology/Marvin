@@ -14,7 +14,6 @@ public class EnemySkeletonBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
         player = GameObject.Find("Player").transform;
     }
 
@@ -22,6 +21,13 @@ public class EnemySkeletonBattleState : EnemyState
     {
         base.Update();
 
+        if (enemySkeleton.IsPlayerDetected().collider != null && enemySkeleton.IsPlayerDetected().distance < enemySkeleton.attackDistance)
+        {
+            stateMachine.ChangeState(enemySkeleton.attackState);
+            enemySkeleton.ZeroVelocity();
+            return;
+        }
+        
         if (player.position.x > enemySkeleton.transform.position.x)
             moveDirection = 1;
         else

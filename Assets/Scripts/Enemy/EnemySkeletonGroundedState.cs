@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemySkeletonGroundedState : EnemyState
 {
     protected EnemySkeleton enemySkeleton;
@@ -14,8 +16,8 @@ public class EnemySkeletonGroundedState : EnemyState
     public override void Update()
     {
         base.Update();
-
-        if (enemy.IsPlayerDetected())
+        
+        if (enemySkeleton.IsPlayerDetected())
             stateMachine.ChangeState(enemySkeleton.battleState);
     }
 
