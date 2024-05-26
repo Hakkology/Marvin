@@ -1891,13 +1891,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   wallCheck: {fileID: 7460394}
-  wallCheckDistance: 0.3
+  wallCheckDistance: 0.2
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 1.5
   idleTime: 2
+  battleTime: 3
   attackDistance: 1.5
+  attackCooldown: 2
+  lastTimeAttacked: 0
 --- !u!4 &1164256291
 Transform:
   m_ObjectHideFlags: 0

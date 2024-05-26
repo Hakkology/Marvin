@@ -7,9 +7,13 @@ public class Enemy : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
+    public float battleTime;
 
     [Header("Attack Info")]
     public float attackDistance;
+    public float attackCooldown;
+    [HideInInspector] public float lastTimeAttacked;
+
     public EnemyStateMachine stateMachine {get; private set;} 
 
 
@@ -27,6 +31,7 @@ public class Enemy : Entity
 
     protected override void Update() 
     {
+        
         base.Update();
         stateMachine.currentState.Update();
     }

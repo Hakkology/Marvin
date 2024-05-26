@@ -23,11 +23,19 @@ public class EnemySkeletonBattleState : EnemyState
 
         if (enemySkeleton.IsPlayerDetected().collider != null && enemySkeleton.IsPlayerDetected().distance < enemySkeleton.attackDistance)
         {
-            stateMachine.ChangeState(enemySkeleton.attackState);
-            enemySkeleton.ZeroVelocity();
-            return;
+            stateTimer = enemySkeleton.battleTime;
+
+            if (CanAttack())
+                stateMachine.ChangeState(enemySkeleton.attackState);
         }
-        
+        else
+        {
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 10)
+            {
+                stateMachine.ChangeState(enemySkeleton.idleState);
+            }
+        }
+
         if (player.position.x > enemySkeleton.transform.position.x)
             moveDirection = 1;
         else
@@ -40,5 +48,15 @@ public class EnemySkeletonBattleState : EnemyState
     public override void Exit()
     {
         base.Exit();
+    }
+
+    private bool CanAttack(){
+
+        if (Time.time >= enemySkeleton.lastTimeAttacked + enemySkeleton.attackCooldown)
+        {
+            enemy.lastTimeAttacked = Time.time;
+            return true;
+        }
+        return false;
     }
 }
