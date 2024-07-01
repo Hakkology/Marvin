@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
+    #region Info variables
     [Header("Collision Info")]
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance = 8f;
     [SerializeField] protected LayerMask groundLayer;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
+
+    [Header("Attack Info")]
+    public float attackCheckRadius;
+    public Transform attackCheck;
+    #endregion
+
 
     #region Components
     public Animator anim {get; private set;}
