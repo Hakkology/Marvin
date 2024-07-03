@@ -33,7 +33,7 @@ public class Entity : MonoBehaviour {
 
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        fx = GetComponentInChildren<EntityFX>();
+        fx = GetComponent<EntityFX>();
     }
 
     protected virtual void Update(){
@@ -48,6 +48,7 @@ public class Entity : MonoBehaviour {
 
     public void Damage()
     {
+        Debug.Log(this.gameObject.name + "was damaged.");
         fx.StartCoroutine("FlashFX");
     }
 

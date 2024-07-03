@@ -15,7 +15,7 @@ public class EntityFX : MonoBehaviour
         originMat = sRenderer.material;
     }
 
-    private IEnumerator FlashFX(){
+    public IEnumerator FlashFX(){
         sRenderer.material = hitMat;
         yield return new WaitForSeconds(.5f);
         sRenderer.material = originMat;
