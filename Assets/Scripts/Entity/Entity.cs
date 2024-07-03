@@ -44,6 +44,11 @@ public class Entity : MonoBehaviour {
         FlipController(_xVelocity);
     }
 
+    public void Damage()
+    {
+        Debug.Log(gameObject.name + "was damaged");
+    }
+
     
     public void ZeroVelocity() => rb.velocity = new Vector2(0,0);
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
@@ -53,6 +58,7 @@ public class Entity : MonoBehaviour {
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance*facingDirection, wallCheck.position.y));
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
 
     public virtual void Flip()
