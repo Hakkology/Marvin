@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EntityFX : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private SpriteRenderer sRenderer;
+
+    [Header("Flash Effects")]
+    [SerializeField] private Material hitMat;
+    private Material originMat;
+
+    void Start() {
+        sRenderer = GetComponentInChildren<SpriteRenderer>();
+        originMat = sRenderer.material;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private IEnumerator FlashFX(){
+        sRenderer.material = hitMat;
+        yield return new WaitForSeconds(.5f);
+        sRenderer.material = originMat;
     }
 }
