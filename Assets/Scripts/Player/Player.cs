@@ -28,7 +28,7 @@ public class Player : Entity
     public PlayerWallSlideState wallSlideState{get; private set;}
     public PlayerDashState dashState{get; private set;}
     public PlayerWallJumpState wallJumpState{get; private set;}
-    public PlayerPrimaryAttack primaryAttackState{get; private set;}
+    public PlayerPrimaryAttackState primaryAttackState{get; private set;}
     #endregion
 
     protected override void Awake() 
@@ -43,7 +43,7 @@ public class Player : Entity
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "Slide");
         dashState = new PlayerDashState (this, stateMachine, "Dash");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
-        primaryAttackState = new PlayerPrimaryAttack(this, stateMachine, "Attack");
+        primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
     }
 
     protected override void Start() 
