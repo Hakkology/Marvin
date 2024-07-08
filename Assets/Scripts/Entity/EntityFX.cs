@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EntityFX : MonoBehaviour
 {
+    [SerializeField]
+    private float flashAnimationTime = .5f;
     private SpriteRenderer sRenderer;
 
     [Header("Flash Effects")]
@@ -17,7 +19,7 @@ public class EntityFX : MonoBehaviour
 
     public IEnumerator FlashFX(){
         sRenderer.material = hitMat;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(flashAnimationTime);
         sRenderer.material = originMat;
     }
 }

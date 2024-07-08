@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour {
@@ -13,6 +14,12 @@ public class Entity : MonoBehaviour {
     [Header("Attack Info")]
     public float attackCheckRadius;
     public Transform attackCheck;
+
+    [Header("Knockback Info")]
+    [SerializeField] protected Vector2 knockbackDirection;
+    [SerializeField] protected float knockbackDuration;
+    protected bool isKnocked;
+
     #endregion
 
 
@@ -42,6 +49,9 @@ public class Entity : MonoBehaviour {
 
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
+        if (isKnocked)
+            return;
+
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
         FlipController(_xVelocity);
     }
@@ -50,10 +60,21 @@ public class Entity : MonoBehaviour {
     {
         Debug.Log(this.gameObject.name + "was damaged.");
         fx.StartCoroutine("FlashFX");
+        StartCoroutine("HitKnockback");
     }
 
-    
-    public void ZeroVelocity() => rb.velocity = new Vector2(0,0);
+    protected virtual IEnumerator HitKnockback(){
+        isKnocked = true;
+        rb.velocity = new Vector2(knockbackDirection.x * -facingDirection, knockbackDirection.y);
+        yield return new WaitForSeconds(knockbackDuration);
+        isKnocked = false;
+    }
+    public void ZeroVelocity() {
+        if (isKnocked)
+            return;
+        
+        rb.velocity = Vector2.zero;
+    } 
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, groundLayer);
 

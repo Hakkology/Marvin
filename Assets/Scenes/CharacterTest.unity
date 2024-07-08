@@ -1633,6 +1633,8 @@ MonoBehaviour:
   wallCheckDistance: 0.3
   attackCheckRadius: 0.8
   attackCheck: {fileID: 1630205241}
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDuration: 0
   attackMovement:
   - 2
   - 3
@@ -1654,6 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2e7606faa77d40940431dd42a9fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashAnimationTime: 0.3
   hitMat: {fileID: 2100000, guid: 3718e81a4897fe1bc803536342c3a434, type: 2}
 --- !u!1 &837560226
 GameObject:
@@ -1911,6 +1914,8 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   attackCheckRadius: 0.8
   attackCheck: {fileID: 1839659740}
+  knockbackDirection: {x: 7, y: 12}
+  knockbackDuration: 0.07
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -2023,6 +2028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2e7606faa77d40940431dd42a9fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashAnimationTime: 0.2
   hitMat: {fileID: 2100000, guid: 3718e81a4897fe1bc803536342c3a434, type: 2}
 --- !u!1 &1175063017
 GameObject:
