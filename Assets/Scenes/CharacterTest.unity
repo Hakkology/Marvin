@@ -2252,7 +2252,7 @@ MonoBehaviour:
   swordPrefab: {fileID: 3932122710065934191, guid: 9727555b9a87c74438f415dbf5527d9f, type: 3}
   launchForce: {x: 35, y: 25}
   swordGravity: 4.5
-  swordReturnSpeed: 22
+  swordReturnSpeed: 18
   numberOfDots: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 4783170209592107681, guid: 3b4307060b01d654f94ef88f8d63d2d3, type: 3}
