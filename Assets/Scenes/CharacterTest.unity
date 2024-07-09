@@ -1620,6 +1620,7 @@ Transform:
   - {fileID: 837560227}
   - {fileID: 1382525622}
   - {fileID: 1630205241}
+  - {fileID: 1605697796}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &797423575
@@ -2047,6 +2048,7 @@ GameObject:
   - component: {fileID: 1107319440}
   - component: {fileID: 1107319439}
   - component: {fileID: 1107319442}
+  - component: {fileID: 1107319443}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -2111,6 +2113,26 @@ MonoBehaviour:
   cloneDuration: 1.5
   colourLosingSpeed: 3
   canAttack: 1
+--- !u!114 &1107319443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107319438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce17f78e455dba408a7226867916196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  swordPrefab: {fileID: 3932122710065934191, guid: 9727555b9a87c74438f415dbf5527d9f, type: 3}
+  launchForce: {x: 15, y: 15}
+  swordGravity: 4
+  numberOfDots: 20
+  spaceBetweenDots: 0.07
+  dotPrefab: {fileID: 4783170209592107681, guid: 3b4307060b01d654f94ef88f8d63d2d3, type: 3}
+  dotsParent: {fileID: 1605697796}
 --- !u!1 &1164256289
 GameObject:
   m_ObjectHideFlags: 0
@@ -4230,6 +4252,37 @@ Transform:
   - {fileID: 1571445361}
   - {fileID: 428629299}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1605697795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1605697796}
+  m_Layer: 6
+  m_Name: AimDotParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1605697796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605697795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 797423574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1624637513
 GameObject:

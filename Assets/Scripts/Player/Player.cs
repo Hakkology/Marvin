@@ -51,8 +51,8 @@ public class Player : Entity
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
-        aimSwordState = new PlayerAimSwordState(this, stateMachine, "");
-        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "");
+        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     protected override void Start() 

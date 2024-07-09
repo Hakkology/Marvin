@@ -20,4 +20,8 @@ public class PlayerAnimationTriggers : MonoBehaviour
                 enemy.Damage();
         }
     }
+
+    private void ThrowSword(){
+        SkillManager.Instance.swordSkill.CreateSword();
+    }
 } 
