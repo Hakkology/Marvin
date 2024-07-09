@@ -7,6 +7,7 @@ public class SkillManager : MonoBehaviour
     public static SkillManager Instance;
 
     public DashSkill dashSkill {get; private set;}
+    public CloneSkill cloneSkill{get; private set;}
     void Awake() {
         if (Instance != null)
             Destroy(Instance.gameObject);
@@ -16,5 +17,6 @@ public class SkillManager : MonoBehaviour
 
     void Start() {
         dashSkill = GetComponent<DashSkill>();
+        cloneSkill = GetComponent<CloneSkill>();
     }
 }

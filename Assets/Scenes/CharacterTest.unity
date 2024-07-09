@@ -1689,7 +1689,6 @@ MonoBehaviour:
   jumpForce: 8
   dashSpeed: 20
   dashDuration: 0.3
-  dashCooldown: 2
 --- !u!114 &797423577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,6 +2046,7 @@ GameObject:
   - component: {fileID: 1107319441}
   - component: {fileID: 1107319440}
   - component: {fileID: 1107319439}
+  - component: {fileID: 1107319442}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -2079,7 +2079,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a3a0c6105c3068abb0761263fbf8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSkill: {fileID: 0}
 --- !u!4 &1107319441
 Transform:
   m_ObjectHideFlags: 0
@@ -2095,6 +2094,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107319442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107319438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dc1935a5016664f971158a489a02c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  clonePrefab: {fileID: 5826138957854346199, guid: d2d47b4247628c749bc7feabc2b3a219, type: 3}
+  cloneDuration: 1.5
+  colourLosingSpeed: 3
+  canAttack: 1
 --- !u!1 &1164256289
 GameObject:
   m_ObjectHideFlags: 0
