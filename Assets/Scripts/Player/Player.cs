@@ -14,8 +14,6 @@ public class Player : Entity
     [Header("Dash Info")]
     public float dashSpeed;
     public float dashDuration;
-    [SerializeField] private float dashCooldown;
-    private float dashUsageTimer;
     public float dashDirection {get; private set;}
 
     #region States
@@ -67,11 +65,8 @@ public class Player : Entity
         if (IsWallDetected())
             return;
 
-        dashUsageTimer -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.Instance.dashSkill.CanUseSkill()){
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0){
-
-            dashUsageTimer = dashCooldown;
             dashDirection =  Input.GetAxisRaw("Horizontal");
 
             if(dashDirection == 0)
