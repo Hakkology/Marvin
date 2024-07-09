@@ -4,6 +4,7 @@ public class Enemy : Entity
 {
     [SerializeField]
     protected LayerMask PlayerLayer;
+
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
@@ -12,6 +13,13 @@ public class Enemy : Entity
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCooldown;
+
+    [Header("Stunned Info")]
+    public float stunDuration;
+    public Vector2 stunDirection;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterImage;
+    
     [HideInInspector] public float lastTimeAttacked;
 
     public EnemyStateMachine stateMachine {get; private set;} 
@@ -45,4 +53,24 @@ public class Enemy : Entity
         Gizmos.DrawLine(transform.position, new Vector2(transform.position.x + attackDistance * facingDirection, transform.position.y));
     }
     public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public virtual void OpenCounterAttackWindow(){
+        canBeStunned = true;
+        counterImage.SetActive(true);
+    }
+    public virtual void CloseCounterAttackWindow(){
+        canBeStunned = false;
+        counterImage.SetActive(false);
+    }
+    protected virtual bool CanBeStunned(){
+        if (canBeStunned)
+        {
+            CloseCounterAttackWindow();
+            return true;
+        }
+        return false;
+    }
+
+    public bool CheckStun(){
+        return CanBeStunned();
+    }
 }

@@ -2,7 +2,7 @@ public class EnemySkeletonMoveState : EnemySkeletonGroundedState
 {
     public EnemySkeletonMoveState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemySkeleton) : base(_enemy, _stateMachine, _animBoolName, _enemySkeleton)
     {
-        
+
     }
 
     public override void Enter()

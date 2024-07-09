@@ -8,7 +8,7 @@ public class EnemySkeletonBattleState : EnemyState
     private float moveDirection;
     public EnemySkeletonBattleState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemySkeleton) : base(_enemy, _stateMachine, _animBoolName)
     {
-        this.enemySkeleton = _enemySkeleton;
+        enemySkeleton = _enemySkeleton;
     }
 
     public override void Enter()
