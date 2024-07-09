@@ -6,6 +6,7 @@ public class Player : Entity
     [Header("Attack Details")]
     public float[] attackMovement;
     public float counterAttackDuration = .2f;
+    public float swordReturnImpact;
 
     [Header("Move Info")]
     public float moveSpeed;
@@ -17,7 +18,6 @@ public class Player : Entity
     public float dashDirection {get; private set;}
 
     #region States
-    
     public PlayerStateMachine stateMachine {get; private set;}
     public PlayerGroundedState groundedState {get; private set;}
     public PlayerIdleState idleState {get; private set;}
@@ -35,6 +35,7 @@ public class Player : Entity
 
     #region Managers
     public SkillManager skill {get; private set;}
+    public GameObject sword {get; private set;}
     #endregion
 
     protected override void Awake() 
@@ -60,7 +61,6 @@ public class Player : Entity
         base.Start();
 
         skill = SkillManager.Instance;
-
         stateMachine.Initialize(idleState);
     }
 
@@ -93,7 +93,13 @@ public class Player : Entity
         IsBusy = false;
     }
 
-
+    public void AssignNewSword(GameObject _newSword) {
+        sword = _newSword;
+    }
+    public void CatchTheSword(){
+        stateMachine.ChangeState(catchSwordState);
+        Destroy(sword);
+    }
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
 

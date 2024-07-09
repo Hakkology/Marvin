@@ -1686,6 +1686,7 @@ MonoBehaviour:
   - 3
   - 2
   counterAttackDuration: 0.2
+  swordReturnImpact: 7
   moveSpeed: 5
   jumpForce: 8
   dashSpeed: 20
@@ -2125,10 +2126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce17f78e455dba408a7226867916196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  cooldown: 2
   swordPrefab: {fileID: 3932122710065934191, guid: 9727555b9a87c74438f415dbf5527d9f, type: 3}
-  launchForce: {x: 15, y: 15}
-  swordGravity: 4
+  launchForce: {x: 35, y: 25}
+  swordGravity: 4.5
+  swordReturnSpeed: 22
   numberOfDots: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 4783170209592107681, guid: 3b4307060b01d654f94ef88f8d63d2d3, type: 3}

@@ -8,6 +8,7 @@ public class SwordSkill : Skill
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchForce;
     [SerializeField] private float swordGravity;
+    [SerializeField] private float swordReturnSpeed;
     private Vector2 finalDir;
 
 
@@ -25,22 +26,22 @@ public class SwordSkill : Skill
 
     protected override void Update() {
 
-        if (Input.GetKeyUp(KeyCode.Mouse1)) {
+        if (Input.GetKeyUp(KeyCode.Mouse1)) 
             finalDir = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
-        }
-
+        
         if (Input.GetKey(KeyCode.Mouse1)){
             for (int i = 0; i < dots.Length; i++)
-            {
-                dots[i].transform.position = DotsPosition( i * spaceBetweenDots);
-            }
+                dots[i].transform.position = DotsPosition(i * spaceBetweenDots);
         }
     }
 
     public void CreateSword(){
+
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         SwordSkillController newSwordScript = newSword.GetComponent<SwordSkillController>();
-        newSwordScript.SetupSword(finalDir, swordGravity);
+        newSwordScript.SetupSword(finalDir, swordGravity, player, swordReturnSpeed);
+
+        player.AssignNewSword(newSword);
 
         DotsActive(false);
     }
