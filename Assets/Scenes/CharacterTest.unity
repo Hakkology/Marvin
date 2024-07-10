@@ -2433,7 +2433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
-  swordType: 3
+  swordType: 0
   bounceAmount: 4
   bounceGravity: 5
   pierceAmount: 2
@@ -2447,6 +2447,7 @@ MonoBehaviour:
   regularGravity: 4.5
   swordGravity: 4.5
   swordReturnSpeed: 18
+  freezeTimeDuration: 0.7
   numberOfDots: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 4783170209592107681, guid: 3b4307060b01d654f94ef88f8d63d2d3, type: 3}
@@ -2603,7 +2604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1175063018}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -2926,7 +2927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1920508996}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -6126,7 +6127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1879390944}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -6629,7 +6630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1191254929}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -35,6 +35,9 @@ public class SwordSkillController : MonoBehaviour
     private float hitTimer;
     private float hitCooldown;
 
+    [Header("Freeze Info")]
+    private float freezeTimeDuration;
+
 
 
     void Awake() {
@@ -64,7 +67,11 @@ public class SwordSkillController : MonoBehaviour
         if (isReturning)
             return;
 
-        other.GetComponent<Enemy>()?.Damage();
+        Enemy enemy = other.GetComponent<Enemy>();
+
+        if (enemy != null)
+            SwordSkillDamage(enemy);
+
         SetupTargetForBounce(other);
         StuckInto(other);
     }
@@ -115,7 +122,7 @@ public class SwordSkillController : MonoBehaviour
                     {
                         Enemy enemy = hit.GetComponent<Enemy>();
                         if (enemy != null)
-                            enemy.Damage();
+                            SwordSkillDamage(enemy);
                     }
                 }
             }
@@ -165,8 +172,11 @@ public class SwordSkillController : MonoBehaviour
 
             if (Vector2.Distance(transform.position, enemyTarget[targetIndex].position) < .1f)
             {
-                enemyTarget[targetIndex].GetComponent<Enemy>().Damage();
+                Enemy enemy = enemyTarget[targetIndex].GetComponent<Enemy>();
 
+                if (enemy != null)
+                    SwordSkillDamage(enemy);
+                
                 targetIndex++;
                 remainingBounce--;
 
@@ -182,21 +192,27 @@ public class SwordSkillController : MonoBehaviour
             }
         }
     }
+
     #endregion
 
     #region Sword
-    public void SetupSword(Vector2 _dir, float _gravityScale, Player _player, float _returnSpeed){
+    public void SetupSword(Vector2 _dir, float _gravityScale, Player _player, float _returnSpeed, float _freezeTimeDuration){
         player = _player;
         returnSpeed = _returnSpeed;
         rb.velocity = _dir;
         rb.gravityScale = _gravityScale;
+        freezeTimeDuration = _freezeTimeDuration;
 
         if(pierceAmount <=0)
             anim.SetBool("Rotation", true);
         
         Invoke("DestroyMe", 7);
     }
-
+    private void SwordSkillDamage(Enemy enemy)
+    {
+        enemy.Damage();
+        enemy.StartCoroutine("FreezeTimeFor", freezeTimeDuration);
+    }
     private void DestroyMe() => Destroy(gameObject);
     
     public void ReturnSword(){

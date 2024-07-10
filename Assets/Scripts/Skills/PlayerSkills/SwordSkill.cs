@@ -34,6 +34,7 @@ public class SwordSkill : Skill
     [SerializeField] private float regularGravity;
     [SerializeField] private float swordGravity;
     [SerializeField] private float swordReturnSpeed;
+    [SerializeField] private float freezeTimeDuration;
     private Vector2 finalDir;
 
 
@@ -83,7 +84,7 @@ public class SwordSkill : Skill
         if (swordType == SwordType.Spin)
             newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown);
         
-        newSwordScript.SetupSword(finalDir, swordGravity, player, swordReturnSpeed);
+        newSwordScript.SetupSword(finalDir, swordGravity, player, swordReturnSpeed, freezeTimeDuration);
 
         player.AssignNewSword(newSword);
 
