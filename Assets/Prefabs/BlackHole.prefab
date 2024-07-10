@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.1923504, g: 0.010461048, b: 0.2804531, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -135,10 +135,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotkeyPrefab: {fileID: 600793812156055439, guid: 7ea13f88128dc2f43acbd78fd2c7c56e, type: 3}
   KeyCodeList: 7100000065000000660000007a00000063000000
-  maxSize: 15
-  growSpeed: 1
-  shrinkSpeed: 3
-  canGrow: 1
-  canShrink: 0
-  amountOfAttacks: 4
-  cloneAttackCooldown: 0.3

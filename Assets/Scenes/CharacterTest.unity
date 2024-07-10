@@ -2468,10 +2468,11 @@ MonoBehaviour:
   cooldown: 30
   blackHolePrefab: {fileID: 7594601868663025926, guid: 9cc420434d4585541914a6e525e8a192, type: 3}
   maxSize: 15
-  growSpeed: 1
-  shrinkSpeed: 2.5
+  growSpeed: 2
+  shrinkSpeed: 5
   amountOfAttacks: 4
   cloneAttackCooldown: 0.4
+  blackHoleDuration: 4
 --- !u!1 &1139506842
 GameObject:
   m_ObjectHideFlags: 0

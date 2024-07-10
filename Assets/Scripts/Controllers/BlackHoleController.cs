@@ -11,6 +11,7 @@ public class BlackHoleController : MonoBehaviour {
     private float maxSize = 15;
     private float growSpeed = 1;
     private float shrinkSpeed;
+    private float blackHoleTimer;
 
     private bool canGrow = true;
     private bool canShrink;
@@ -18,16 +19,32 @@ public class BlackHoleController : MonoBehaviour {
 
     [Header("Clone info")]
     private int amountOfAttacks = 4;
-    private float cloneAttackCooldown = .3f;
+    private float cloneAttackCooldown = 0.3f;
     private float cloneAttackTimer;
     private bool canAttack;
 
     private List<Transform> targets = new List<Transform>();
     private List<GameObject> hotkeyContainer = new List<GameObject>();
+    private Player player;
 
+    public bool playerCanExitState {get; private set;}
+    private bool playerDisappearence = true;
+
+    void Start() => player = PlayerManager.Instance.player;
     void Update()
     {
         cloneAttackTimer -= Time.deltaTime;
+        blackHoleTimer -= Time.deltaTime;
+
+        if(blackHoleTimer < 0){
+
+            blackHoleTimer = Mathf.Infinity;
+
+            if(targets.Count >0)
+                ReleaseCloneAttack();
+            else
+                ShrinkHole();
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
             ReleaseCloneAttack();
@@ -35,22 +52,23 @@ public class BlackHoleController : MonoBehaviour {
         ApplyClones();
 
         if (canGrow && !canShrink)
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(maxSize, maxSize), growSpeed * Time.deltaTime);
+            transform.localScale = Vector2.Lerp(transform.localScale, new Vector3(maxSize, maxSize), growSpeed * Time.deltaTime);
 
         if (canShrink)
         {
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(-1, -1), shrinkSpeed * Time.deltaTime);
+            transform.localScale = Vector2.Lerp(transform.localScale, new Vector3(-1, -1), shrinkSpeed * Time.deltaTime);
             if (transform.localScale.x < 0)
                 Destroy(gameObject);
         }
     }
 
-    public void SetupBlackHole(float _maxSize, float _growSpeed, float _shrinkSpeed, int _amountOfAttacks, float _cloneAttackCooldown){
+    public void SetupBlackHole(float _maxSize, float _growSpeed, float _shrinkSpeed, int _amountOfAttacks, float _cloneAttackCooldown, float _blackHoleDuration){
         maxSize = _maxSize;
         growSpeed = _growSpeed;
         shrinkSpeed = _shrinkSpeed;
         amountOfAttacks = _amountOfAttacks;
         cloneAttackCooldown = _cloneAttackCooldown;
+        blackHoleTimer = _blackHoleDuration;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -75,15 +93,24 @@ public class BlackHoleController : MonoBehaviour {
     #region Clones
     private void ReleaseCloneAttack()
     {
+        if(targets.Count <= 0)
+            return;
+
         DestroyHotkeys();
         canAttack = true;
         canCreateHotkeys = false;
+
+        if(playerDisappearence){
+            playerDisappearence = false;
+            player.fx.TurnInvisible(true);  
+        }
+
     }
     public void AddEnemyToList(Transform transform) => targets.Add(transform);
 
     private void ApplyClones()
     {
-        if (cloneAttackTimer < 0 && canAttack)
+        if (cloneAttackTimer < 0 && canAttack && amountOfAttacks > 0)
         {
             cloneAttackTimer = cloneAttackCooldown;
             int randomIndex = Random.Range(0, targets.Count);
@@ -94,17 +121,21 @@ public class BlackHoleController : MonoBehaviour {
             else
                 xOffset = -1.5f;
 
-
             SkillManager.Instance.cloneSkill.CreateClone(targets[randomIndex], new Vector2(xOffset, 0));
             amountOfAttacks--;
 
             if (amountOfAttacks <= 0)
-            {
-                canShrink = true;
-                canAttack = false;
-            }
-
+                Invoke("ShrinkHole", .8f);
         }
+    }
+
+    private void ShrinkHole()
+    {
+        DestroyHotkeys();
+        playerCanExitState = true;
+        //player.ExitTrance();
+        canShrink = true;
+        canAttack = false;
     }
     #endregion
 

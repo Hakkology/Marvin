@@ -15,6 +15,9 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
+        if (Input.GetKeyDown(KeyCode.R) && !player.skill.blackHoleSkill.IsInCooldown())
+            stateMachine.ChangeState(player.blackHoleState);
+
         if(Input.GetKeyDown(KeyCode.Q))
             stateMachine.ChangeState(player.counterAttackState);
 

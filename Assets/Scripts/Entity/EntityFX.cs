@@ -34,4 +34,11 @@ public class EntityFX : MonoBehaviour
         CancelInvoke();
         sRenderer.color = Color.white;
     }
+
+    public void TurnInvisible(bool _invisible){
+        if(_invisible)
+            sRenderer.color = Color.clear;
+        else
+            sRenderer.color = Color.white;
+    }
 }

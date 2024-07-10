@@ -29,4 +29,11 @@ public class Skill : MonoBehaviour {
     public virtual void UseSkill(){
         // for skills
     }
+
+    public virtual bool IsInCooldown(){
+        if (cooldownTimer <0)
+            return false;
+        else
+            return true;
+    }
 }
