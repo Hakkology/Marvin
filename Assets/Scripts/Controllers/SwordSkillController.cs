@@ -21,6 +21,9 @@ public class SwordSkillController : MonoBehaviour
     [Header("Bounce Info")]
     private bool isBouncing;
     private int bounceAmount;
+    private List<Transform> enemyTarget;
+    private int targetIndex;
+    private int remainingBounce;
 
     [Header("Spin Info")]
     private float maxTravelDistance;
@@ -32,9 +35,7 @@ public class SwordSkillController : MonoBehaviour
     private float hitTimer;
     private float hitCooldown;
 
-    private List<Transform> enemyTarget;
-    private int targetIndex;
-    private int remainingBounce;
+
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -79,23 +80,20 @@ public class SwordSkillController : MonoBehaviour
 
     private void StopWhenSpinning()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) > maxTravelDistance && !wasStopped)
-        {
-            wasStopped = true;
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
-            spinTimer = spinDuration;
-        }
+        wasStopped = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        spinTimer = spinDuration;
     }
 
     private void ApplySpin()
     {
         if (isSpinning)
         {
-            StopWhenSpinning();
+            if (Vector2.Distance(player.transform.position, transform.position) > maxTravelDistance && !wasStopped)
+                StopWhenSpinning();
 
             if (wasStopped)
             {
-
                 spinTimer -= Time.deltaTime;
 
                 if (spinTimer < 0)
@@ -109,7 +107,6 @@ public class SwordSkillController : MonoBehaviour
 
                 if (hitTimer < 0)
                 {
-
                     hitTimer = hitCooldown;
 
                     Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1);
@@ -196,7 +193,12 @@ public class SwordSkillController : MonoBehaviour
 
         if(pierceAmount <=0)
             anim.SetBool("Rotation", true);
+        
+        Invoke("DestroyMe", 7);
     }
+
+    private void DestroyMe() => Destroy(gameObject);
+    
     public void ReturnSword(){
         //rb.isKinematic = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
