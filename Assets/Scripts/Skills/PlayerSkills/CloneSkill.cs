@@ -11,10 +11,12 @@ public class CloneSkill : Skill
     [SerializeField] private float colourLosingSpeed;
     [Space]
     [SerializeField] private bool canAttack;
+    
 
     public void CreateClone(Transform clonePosition, Vector2 _offset){
 
         GameObject newClone = Instantiate(clonePrefab);
-        newClone.GetComponent<CloneSkillController>().SetupClone(clonePosition, cloneDuration, colourLosingSpeed, canAttack, _offset);
+        newClone.GetComponent<CloneSkillController>().SetupClone(
+            clonePosition, cloneDuration, colourLosingSpeed, canAttack, _offset, FindClosestEnemy(newClone.transform));
     }
 }

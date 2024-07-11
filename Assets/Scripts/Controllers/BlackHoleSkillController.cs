@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlackHoleController : MonoBehaviour {
+public class BlackHoleSkillController : MonoBehaviour {
     [SerializeField] private GameObject hotkeyPrefab;
     [SerializeField] private List<KeyCode> KeyCodeList;
 

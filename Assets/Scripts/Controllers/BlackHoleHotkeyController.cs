@@ -8,9 +8,9 @@ public class BlackHoleHotkeyController : MonoBehaviour {
     private TextMeshProUGUI hotkeyText;
 
     private Transform enemy;
-    private BlackHoleController blackHoleController;
+    private BlackHoleSkillController blackHoleController;
 
-    public void SetupHotKey(KeyCode _hotkey, Transform _enemy, BlackHoleController _blackHoleController) {
+    public void SetupHotKey(KeyCode _hotkey, Transform _enemy, BlackHoleSkillController _blackHoleController) {
 
         sr = GetComponent<SpriteRenderer>();
         hotkeyText = GetComponentInChildren<TextMeshProUGUI>();
