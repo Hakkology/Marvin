@@ -1844,6 +1844,7 @@ GameObject:
   - component: {fileID: 797423575}
   - component: {fileID: 797423576}
   - component: {fileID: 797423577}
+  - component: {fileID: 797423578}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1980,6 +1981,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashAnimationTime: 0.3
   hitMat: {fileID: 2100000, guid: 3718e81a4897fe1bc803536342c3a434, type: 2}
+--- !u!114 &797423578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797423569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42895f9bb08fe3842a87957a384afee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    modifiers: 
+  maxHealth:
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &837560226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2659,7 @@ GameObject:
   - component: {fileID: 1164256293}
   - component: {fileID: 1164256290}
   - component: {fileID: 1164256294}
+  - component: {fileID: 1164256295}
   m_Layer: 7
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -2789,6 +2808,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashAnimationTime: 0.2
   hitMat: {fileID: 2100000, guid: 3718e81a4897fe1bc803536342c3a434, type: 2}
+--- !u!114 &1164256295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164256289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f91fbe8707ed04089b7fab10e7fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    modifiers: 
+  maxHealth:
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &1175063017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,6 +2966,7 @@ GameObject:
   - component: {fileID: 1234397139}
   - component: {fileID: 1234397138}
   - component: {fileID: 1234397137}
+  - component: {fileID: 1234397141}
   m_Layer: 7
   m_Name: Enemy_Skeleton (1)
   m_TagString: Untagged
@@ -3078,6 +3115,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1234397141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234397135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f91fbe8707ed04089b7fab10e7fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    modifiers: 
+  maxHealth:
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &1328151779
 GameObject:
   m_ObjectHideFlags: 0
@@ -6130,6 +6184,7 @@ GameObject:
   - component: {fileID: 1801371021}
   - component: {fileID: 1801371020}
   - component: {fileID: 1801371019}
+  - component: {fileID: 1801371023}
   m_Layer: 7
   m_Name: Enemy_Skeleton (3)
   m_TagString: Untagged
@@ -6278,6 +6333,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1801371023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801371017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f91fbe8707ed04089b7fab10e7fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    modifiers: 
+  maxHealth:
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &1839659739
 GameObject:
   m_ObjectHideFlags: 0
@@ -6633,6 +6705,7 @@ GameObject:
   - component: {fileID: 1955403911}
   - component: {fileID: 1955403910}
   - component: {fileID: 1955403909}
+  - component: {fileID: 1955403913}
   m_Layer: 7
   m_Name: Enemy_Skeleton (2)
   m_TagString: Untagged
@@ -6781,6 +6854,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1955403913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955403907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f91fbe8707ed04089b7fab10e7fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    modifiers: 
+  maxHealth:
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &2052969895
 GameObject:
   m_ObjectHideFlags: 0

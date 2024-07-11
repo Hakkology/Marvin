@@ -71,9 +71,7 @@ public class CrystalSkillController : MonoBehaviour
                 enemy.Damage();
         }
     }
-
     public void SelfDestroy() => Destroy(gameObject);
-
     public void ChooseRandomEnemy(){
 
         float radius = SkillManager.Instance.blackHoleSkill.GetBlackHoleRadius();

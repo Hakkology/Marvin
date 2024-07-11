@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour {
     public Rigidbody2D rb {get; private set;}
     public EntityFX fx {get; private set;}
     public SpriteRenderer spriteRenderer {get; private set;}
+    public EntityStats stats{get; private set;}
     #endregion
 
     public int facingDirection {get; private set;} = 1;
@@ -43,6 +44,7 @@ public class Entity : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
+        stats = GetComponent<EntityStats>();
     }
 
     protected virtual void Update(){
