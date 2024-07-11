@@ -7,22 +7,25 @@ public class CrystalSkill : Skill {
     [SerializeField] private GameObject crystalPrefab;
     [Header("Crystal Values")]
     [SerializeField] private float crystalDuration;
+
+    [Header("Explosive Crystal")]
     [SerializeField] private float crystalGrowSpeed;
     [SerializeField] private float crystalMaxSize;
 
-    [Header("Explosive Crystal")]
-    [SerializeField] private bool canExplode;
-
     [Header("Moving Crystal")]
-    [SerializeField] private bool canMoveToEnemy;
     [SerializeField] private float moveSpeed;
 
     [Header("Multi Stacking Crystal")]
-    [SerializeField] private bool canUseMultiStacks;
     [SerializeField] private int amountOfStacks;
     [SerializeField] private int multiStackCooldown;
     [SerializeField] private float multiStackUseTimeWindow;
     [SerializeField] private List<GameObject> crystals = new List<GameObject>();
+
+    [Header("Various Crystal Skill Modifiers")]
+    [SerializeField] private bool canUseMultiStacks;
+    [SerializeField] private bool canMoveToEnemy;
+    [SerializeField] private bool canExplode;
+    [SerializeField] private bool cloneInsteadOfCrystal;
 
     private GameObject currentCrystal;
     protected override void Start() {
@@ -53,7 +56,11 @@ public class CrystalSkill : Skill {
             player.transform.position = currentCrystal.transform.position;
             currentCrystal.transform.position = playerPos;
 
-            currentCrystal.GetComponent<CrystalSkillController>()?.CrystalRelease();
+            if (cloneInsteadOfCrystal){
+                player.skill.cloneSkill.CreateClone(currentCrystal.transform, Vector2.zero);
+                Destroy(currentCrystal);
+            } else 
+                currentCrystal.GetComponent<CrystalSkillController>()?.CrystalRelease();
         }
     }
 

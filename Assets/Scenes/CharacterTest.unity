@@ -2417,11 +2417,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20dc1935a5016664f971158a489a02c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  cooldown: 0.4
   clonePrefab: {fileID: 5826138957854346199, guid: d2d47b4247628c749bc7feabc2b3a219, type: 3}
   cloneDuration: 1.5
   colourLosingSpeed: 3
   canAttack: 1
+  chanceToDuplicate: 25
+  createCloneOnDashStart: 1
+  createCloneOnDashOver: 0
+  createCloneOnCounterAttack: 0
+  createDuplicateClone: 1
 --- !u!114 &1107319443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2491,10 +2496,7 @@ MonoBehaviour:
   crystalDuration: 6
   crystalGrowSpeed: 5
   crystalMaxSize: 3
-  canExplode: 1
-  canMoveToEnemy: 1
   moveSpeed: 6
-  canUseMultiStacks: 1
   amountOfStacks: 3
   multiStackCooldown: 4
   multiStackUseTimeWindow: 2.5
@@ -2502,6 +2504,10 @@ MonoBehaviour:
   - {fileID: 4485755545789882536, guid: b4228495ed7f5c441a35a27b98ef96b5, type: 3}
   - {fileID: 4485755545789882536, guid: b4228495ed7f5c441a35a27b98ef96b5, type: 3}
   - {fileID: 4485755545789882536, guid: b4228495ed7f5c441a35a27b98ef96b5, type: 3}
+  canUseMultiStacks: 1
+  canMoveToEnemy: 1
+  canExplode: 1
+  cloneInsteadOfCrystal: 0
 --- !u!1 &1139506842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,7 +2668,7 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   attackCheckRadius: 0.8
   attackCheck: {fileID: 1839659740}
-  knockbackDirection: {x: 7, y: 12}
+  knockbackDirection: {x: 5, y: 3}
   knockbackDuration: 0.07
   PlayerLayer:
     serializedVersion: 2
@@ -2985,7 +2991,7 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   attackCheckRadius: 0.8
   attackCheck: {fileID: 1564716785}
-  knockbackDirection: {x: 7, y: 12}
+  knockbackDirection: {x: 5, y: 3}
   knockbackDuration: 0.07
   PlayerLayer:
     serializedVersion: 2
@@ -6185,7 +6191,7 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   attackCheckRadius: 0.8
   attackCheck: {fileID: 1219233321}
-  knockbackDirection: {x: 7, y: 12}
+  knockbackDirection: {x: 5, y: 3}
   knockbackDuration: 0.07
   PlayerLayer:
     serializedVersion: 2
@@ -6688,7 +6694,7 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   attackCheckRadius: 0.8
   attackCheck: {fileID: 646303405}
-  knockbackDirection: {x: 7, y: 12}
+  knockbackDirection: {x: 5, y: 3}
   knockbackDuration: 0.07
   PlayerLayer:
     serializedVersion: 2
