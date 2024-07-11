@@ -100,7 +100,7 @@ public class BlackHoleSkillController : MonoBehaviour {
         canAttack = true;
         canCreateHotkeys = false;
 
-        if(playerDisappearence){
+        if(playerDisappearence && !player.skill.cloneSkill.crystalInsteadOfClones){
             playerDisappearence = false;
             player.fx.TurnInvisible(true);  
         }
@@ -121,7 +121,16 @@ public class BlackHoleSkillController : MonoBehaviour {
             else
                 xOffset = -1.5f;
 
-            SkillManager.Instance.cloneSkill.CreateClone(targets[randomIndex], new Vector2(xOffset, 0));
+            if (player.skill.cloneSkill.crystalInsteadOfClones)
+            {
+                player.skill.crystalSkill.CreateCrystal();
+                player.skill.crystalSkill.CurrentCrystalChooseRandomTarget();
+            }
+            else
+            {
+                player.skill.cloneSkill.CreateClone(targets[randomIndex], new Vector2(xOffset, 0));
+            }
+
             amountOfAttacks--;
 
             if (amountOfAttacks <= 0)

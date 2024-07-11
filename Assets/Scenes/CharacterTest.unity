@@ -2424,9 +2424,10 @@ MonoBehaviour:
   canAttack: 1
   chanceToDuplicate: 25
   createCloneOnDashStart: 1
-  createCloneOnDashOver: 0
-  createCloneOnCounterAttack: 0
-  createDuplicateClone: 1
+  createCloneOnDashOver: 1
+  createCloneOnCounterAttack: 1
+  createDuplicateClone: 0
+  crystalInsteadOfClones: 1
 --- !u!114 &1107319443
 MonoBehaviour:
   m_ObjectHideFlags: 0

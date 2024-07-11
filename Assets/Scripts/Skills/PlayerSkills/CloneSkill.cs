@@ -17,9 +17,17 @@ public class CloneSkill : Skill
     [SerializeField] private bool createCloneOnDashOver;
     [SerializeField] private bool createCloneOnCounterAttack;
     [SerializeField] private bool createDuplicateClone;
+    [SerializeField] public bool crystalInsteadOfClones;
     
 
     public void CreateClone(Transform clonePosition, Vector2 _offset){
+
+        if (crystalInsteadOfClones)
+        {
+            player.skill.crystalSkill.CreateCrystal();
+            player.skill.crystalSkill.CurrentCrystalChooseRandomTarget();
+            return;
+        }
 
         GameObject newClone = Instantiate(clonePrefab);
         newClone.GetComponent<CloneSkillController>().SetupClone(

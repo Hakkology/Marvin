@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5711042216908543009}
   - component: {fileID: 626790177460384198}
   - component: {fileID: 4223495224103842420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,3 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2aa9ba5233dc9448af2d3523444d79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
