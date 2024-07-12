@@ -25,6 +25,8 @@ public class Enemy : Entity
     [HideInInspector] public float lastTimeAttacked;
 
     public EnemyStateMachine stateMachine {get; private set;} 
+    public string lastAnimBoolName {get; private set;}
+    //public EnemyStats stats {get; private set;}
 
 
     protected override void Awake() 
@@ -37,7 +39,7 @@ public class Enemy : Entity
     protected override void Start() 
     {
         base.Start();
-        
+        //stats = GetComponent<EnemyStats>();
     }
 
     protected override void Update() 
@@ -48,6 +50,9 @@ public class Enemy : Entity
 
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, PlayerLayer);
     public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public virtual void AssignLastAnimName(string _animBoolName){
+        lastAnimBoolName = _animBoolName;
+    }
     protected override void OnDrawGizmos() 
     {
         base.OnDrawGizmos();
@@ -77,7 +82,6 @@ public class Enemy : Entity
 
     #endregion
 
-
     #region CounterAttackWindow
     public virtual void OpenCounterAttackWindow(){
         canBeStunned = true;
@@ -88,6 +92,8 @@ public class Enemy : Entity
         counterImage.SetActive(false);
     }
     #endregion
+    
+    #region Stun
     protected virtual bool CanBeStunned(){
         if (canBeStunned)
         {
@@ -100,4 +106,5 @@ public class Enemy : Entity
     public bool CheckStun(){
         return CanBeStunned();
     }
+    #endregion
 }

@@ -45,12 +45,14 @@ public class Skill : MonoBehaviour {
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
+            Enemy enemy = hit.GetComponent<Enemy>();
+
+            if (enemy != null)
             {
-                float distanceToEnemy = Vector2.Distance(_checkTransform.position, hit.transform.position);
+                float distanceToEnemy = Vector2.Distance(_checkTransform.position, enemy.transform.position);
                 if (distanceToEnemy < closestDistance){
                     closestDistance = distanceToEnemy;
-                    closestEnemy = hit.transform;
+                    closestEnemy = enemy.transform;
                 }
             }
         }

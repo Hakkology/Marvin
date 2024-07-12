@@ -28,7 +28,8 @@ public class Entity : MonoBehaviour {
     public Rigidbody2D rb {get; private set;}
     public EntityFX fx {get; private set;}
     public SpriteRenderer spriteRenderer {get; private set;}
-    public EntityStats stats{get; private set;}
+    public CapsuleCollider2D cd {get; private set;}
+    public EntityStats stats {get; private set;}
     #endregion
 
     public int facingDirection {get; private set;} = 1;
@@ -44,6 +45,7 @@ public class Entity : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
+        cd = GetComponent<CapsuleCollider2D>();
         stats = GetComponent<EntityStats>();
     }
 
@@ -60,7 +62,7 @@ public class Entity : MonoBehaviour {
         FlipController(_xVelocity);
     }
 
-    public void Damage()
+    public void DamageEffect()
     {
         Debug.Log(this.gameObject.name + "was damaged.");
         fx.StartCoroutine("FlashFX");
@@ -104,5 +106,9 @@ public class Entity : MonoBehaviour {
         {
             Flip();
         }
+    }
+
+    public virtual void Death(){
+
     }
 }

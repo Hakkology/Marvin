@@ -24,7 +24,7 @@ public class CloneSkillController : MonoBehaviour {
         if (cloneTimer < 0)
         {
             sRenderer.color = new Color(1,1,1, sRenderer.color.a - (Time.deltaTime * colourLosingSpeed));
-            if (sRenderer.color.a < 0)
+            if (sRenderer.color.a <= 0)
                 Destroy(gameObject);
         }
     }
@@ -60,7 +60,7 @@ public class CloneSkillController : MonoBehaviour {
 
             if(enemy != null)
             {
-                enemy.Damage();
+                enemy.DamageEffect();
 
                 if (createDuplicateClone){
                     if (Random.Range(0, 100) < chanceToDuplicate){

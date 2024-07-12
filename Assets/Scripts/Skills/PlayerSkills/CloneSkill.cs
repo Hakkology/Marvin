@@ -25,7 +25,7 @@ public class CloneSkill : Skill
         if (crystalInsteadOfClones)
         {
             player.skill.crystalSkill.CreateCrystal();
-            player.skill.crystalSkill.CurrentCrystalChooseRandomTarget();
+            //player.skill.crystalSkill.CurrentCrystalChooseRandomTarget();
             return;
         }
 

@@ -7,6 +7,6 @@ public class DashSkill : Skill {
     {
         base.UseSkill();
 
-        Debug.Log("Created clone behind.");
+        //Debug.Log("Created clone behind.");
     }
 }

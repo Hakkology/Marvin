@@ -6,13 +6,13 @@ public class EntityStats : MonoBehaviour {
     public Stat damage;
     public Stat maxHealth;
     [SerializeField] private int currentHealth;
-
-    void Start() {
+    protected virtual void Start() {
         currentHealth = maxHealth.GetValue();
     }
-
     public virtual void TakeDamage(int _damage) {
         currentHealth -= _damage;
+
+        Debug.Log(" " + _damage);
 
         if (currentHealth <= 0) 
             Die();
@@ -25,6 +25,6 @@ public class EntityStats : MonoBehaviour {
 
     protected virtual void Die()
     {
-        throw new NotImplementedException();
+        
     }
 }

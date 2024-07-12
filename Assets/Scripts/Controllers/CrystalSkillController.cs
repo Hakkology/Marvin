@@ -40,8 +40,8 @@ public class CrystalSkillController : MonoBehaviour
         if(canMove){
             transform.position = Vector2.MoveTowards(transform.position, closestTarget.position, moveSpeed * Time.deltaTime);
             if(Vector2.Distance(transform.position, closestTarget.position) < .5f){
-                CrystalRelease();
                 canMove = false;
+                CrystalRelease();
             }
         }
         
@@ -68,7 +68,7 @@ public class CrystalSkillController : MonoBehaviour
             var enemy = hit.GetComponent<Enemy>();
 
             if(enemy != null)
-                enemy.Damage();
+                enemy.DamageEffect();
         }
     }
     public void SelfDestroy() => Destroy(gameObject);

@@ -7,6 +7,7 @@ public class EnemySkeleton : Enemy
     public EnemySkeletonBattleState battleState{get; private set;}
     public EnemySkeletonAttackState attackState{get; private set;}
     public EnemySkeletonStunnedState stunnedState{get; private set;}
+    public EnemySkeletonDeadState deadState{get; private set;}
     protected override void Awake() 
     {
         base.Awake();
@@ -16,6 +17,7 @@ public class EnemySkeleton : Enemy
         battleState = new EnemySkeletonBattleState(this, stateMachine, "Move", this);
         attackState = new EnemySkeletonAttackState(this, stateMachine, "Attack", this);
         stunnedState = new EnemySkeletonStunnedState(this, stateMachine, "Stunned", this);
+        deadState = new EnemySkeletonDeadState(this, stateMachine, "Idle", this);
     }
 
     protected override void Start() 
@@ -45,5 +47,10 @@ public class EnemySkeleton : Enemy
         return false;
     }
 
+    public override void Death()
+    {
+        base.Death();
+        stateMachine.ChangeState(deadState);
+    }
 
 }

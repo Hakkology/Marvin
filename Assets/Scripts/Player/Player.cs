@@ -32,11 +32,13 @@ public class Player : Entity
     public PlayerAimSwordState aimSwordState {get; private set;}
     public PlayerCatchSwordState catchSwordState {get; private set;}
     public PlayerBlackHoleState blackHoleState {get; private set;}
+    public PlayerDeadState deadState{get; private set;}
     #endregion
 
     #region Managers
     public SkillManager skill {get; private set;}
     public GameObject sword {get; private set;}
+    //public PlayerStats stats {get; private set;}
     #endregion
 
     protected override void Awake() 
@@ -56,12 +58,14 @@ public class Player : Entity
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         blackHoleState = new PlayerBlackHoleState(this, stateMachine, "Jump");
+        deadState = new PlayerDeadState(this, stateMachine, "Death");
     }
 
     protected override void Start() 
     {
         base.Start();
 
+        //stats = GetComponent<PlayerStats>();
         skill = SkillManager.Instance;
         stateMachine.Initialize(idleState);
     }
@@ -107,4 +111,9 @@ public class Player : Entity
         Destroy(sword);
     }
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public override void Death()
+    {
+        base.Death();
+        stateMachine.ChangeState(deadState);
+    }
 }
