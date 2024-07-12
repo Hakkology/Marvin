@@ -1497,12 +1497,48 @@ MonoBehaviour:
   strength:
     baseValue: 0
     modifiers: 
+  agility:
+    baseValue: 0
+    modifiers: 
+  intelligence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
+    modifiers: 
   damage:
     baseValue: 5
     modifiers: 
-  maxHealth:
-    baseValue: 10
+  criticalChance:
+    baseValue: 0
     modifiers: 
+  criticalDamageMultiplier:
+    baseValue: 0
+    modifiers: 
+  fireDamage:
+    baseValue: 15
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightningDamage:
+    baseValue: 0
+    modifiers: 
+  maxHealth:
+    baseValue: 100
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  magicResistance:
+    baseValue: 6
+    modifiers: 
+  isIgnited: 0
+  isShocked: 0
+  isChilled: 0
   currentHealth: 0
 --- !u!1 &837560226
 GameObject:
@@ -5302,8 +5338,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3665289770832772504, guid: cc4ab97247a69574891c58c146a20559, type: 3}
+      propertyPath: iceDamage.baseValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665289770832772504, guid: cc4ab97247a69574891c58c146a20559, type: 3}
       propertyPath: maxHealth.baseValue
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665289770832772504, guid: cc4ab97247a69574891c58c146a20559, type: 3}
+      propertyPath: fireDamage.baseValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665289770832772504, guid: cc4ab97247a69574891c58c146a20559, type: 3}
+      propertyPath: intelligence.baseValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665289770832772504, guid: cc4ab97247a69574891c58c146a20559, type: 3}
+      propertyPath: lightningDamage.baseValue
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
