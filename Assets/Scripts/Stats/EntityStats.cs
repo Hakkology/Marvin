@@ -167,25 +167,50 @@ public class EntityStats : MonoBehaviour {
     }
 
     public void ApplyAilments(bool _ignite, bool _chill, bool _shock){
-        if (isIgnited || isChilled || isShocked)
-            return;
+        bool canApplyIgnite = !isIgnited && !isChilled && !isShocked;
+        bool canApplyChill = !isIgnited && !isChilled && !isShocked;
+        bool canApplyShock = !isIgnited && !isChilled;
         
-        if (_ignite){
+        if (_ignite && canApplyIgnite){
             ailmentTimer = ailmentDuration;
             entityFX.IgniteFXFor(ailmentDuration);
             isIgnited = true;
         }
 
-        if (_chill){
+        if (_chill && canApplyChill){
             ailmentTimer = ailmentDuration;
             entityFX.ChillFxFor(ailmentDuration);
             isChilled = true;
         }
 
-        if (_shock){
-            ailmentTimer = ailmentDuration;
-            entityFX.ShockFXFor(ailmentDuration);
-            isShocked = true;
+        if (_shock && canApplyShock){
+
+            if(!isShocked){
+
+                ailmentTimer = ailmentDuration;
+                entityFX.ShockFXFor(ailmentDuration);
+                isShocked = true;
+            }
+            else
+            {
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 25);
+                float closestDistance = Mathf.Infinity;
+                Transform closestEnemy = null;
+
+                foreach (var hit in colliders)
+                {
+                    Enemy enemy = hit.GetComponent<Enemy>();
+
+                    if (enemy != null)
+                    {
+                        float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+                        if (distanceToEnemy < closestDistance){
+                            closestDistance = distanceToEnemy;
+                            closestEnemy = enemy.transform;
+                        }
+                    }
+                }
+            }
         }
     }
 
