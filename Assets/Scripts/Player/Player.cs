@@ -11,11 +11,14 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float jumpForce;
+    private float defaultMoveSpeed;
+    private float defaultJumpForce;
     public bool IsBusy {get; private set;}
     [Header("Dash Info")]
     public float dashSpeed;
     public float dashDuration;
     public float dashDirection {get; private set;}
+    private float defaultDashSpeed;
 
     #region States
     public PlayerStateMachine stateMachine {get; private set;}
@@ -68,6 +71,10 @@ public class Player : Entity
         //stats = GetComponent<PlayerStats>();
         skill = SkillManager.Instance;
         stateMachine.Initialize(idleState);
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     protected override void Update() 
@@ -79,6 +86,24 @@ public class Player : Entity
 
         if(Input.GetKeyDown(KeyCode.F))
             skill.crystalSkill.CanUseSkill();
+    }
+
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed *= 1-_slowPercentage;
+        jumpForce *= 1-_slowPercentage;
+        dashSpeed *= 1-_slowPercentage;
+        anim.speed *= 1-_slowPercentage;
+
+        Invoke(nameof(DefaultSpeed), _slowDuration);
+    }
+
+    public override void DefaultSpeed()
+    {
+        base.DefaultSpeed();
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
     }
 
     private void CheckForDashInput(){

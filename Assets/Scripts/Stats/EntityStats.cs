@@ -4,6 +4,11 @@ using System.Linq;
 using UnityEngine;
 
 public class EntityStats : MonoBehaviour {
+
+    [Header("References")]
+    private EntityFX entityFX;
+    private Entity entity;
+
     [Header("Major Stats")]
     public Stat strength;
     public Stat agility;
@@ -20,6 +25,7 @@ public class EntityStats : MonoBehaviour {
     public Stat iceDamage;
     public Stat lightningDamage;
 
+
     [Header("Defensive Stats")]
     public Stat maxHealth;
     public Stat armor; // damage - armor
@@ -30,44 +36,60 @@ public class EntityStats : MonoBehaviour {
     public bool isShocked; // %20 decrease armor, slow
     public bool isChilled; // reduce accuracy by %20
 
-    private float ignitedTimer;
-    private float chilledTimer;
-    private float shockedTimer;
-    private float ignitedDamageCooldown = 1f;
+    [SerializeField] private float ailmentDuration = 4;
+    private float ailmentTimer;
+    // private float ignitedTimer;
+    // private float chilledTimer;
+    // private float shockedTimer;
+    private float ignitedDamageCooldown = 1.2f;
     private float igniteDamageTimer;
+    private int igniteDamage;
+    private float slowPercetange = .2f;
 
+    public int currentHealth;
+    public Action onHealthChanged;
 
+    void Awake() {
+        entityFX = GetComponent<EntityFX>();
+        entity = GetComponent<Entity>();
+    }
 
-    [SerializeField] private int currentHealth;
     protected virtual void Start() {
         criticalDamageMultiplier.SetDefaultValue(150);
-        currentHealth = maxHealth.GetValue();
+        currentHealth = GetMaxHealthValue();
     }
     protected virtual void Update() {
-        ignitedTimer -= Time.deltaTime;
+        ailmentTimer -= Time.deltaTime;
+        // ignitedTimer -= Time.deltaTime;
+        // chilledTimer -= Time.deltaTime;
+        // shockedTimer -= Time.deltaTime;
         igniteDamageTimer -= Time.deltaTime;
 
-        if (ignitedTimer < 0)
+        if (ailmentTimer < 0){
             isIgnited = false;
-
-        if (chilledTimer < 0)
             isChilled = false;
-        
-        if (shockedTimer < 0)
             isShocked = false;
+        }
         
         if(igniteDamageTimer < 0 && isIgnited){
-            Debug.Log("Burning damage on" + this.name);
+            DecreaseHealth(igniteDamage);
             igniteDamageTimer = ignitedDamageCooldown;
+            if (currentHealth <= 0) 
+                Die();
         }
     }
     public virtual void TakeDamage(int _damage) {
-        currentHealth -= _damage;
 
-        Debug.Log(" " + _damage);
-
+        DecreaseHealth(_damage);
         if (currentHealth <= 0) 
             Die();
+    }
+
+    protected virtual void DecreaseHealth(int _amount){
+        currentHealth -= _amount;
+
+        if (onHealthChanged != null)
+            onHealthChanged();
     }
 
     public virtual void DoDamage(EntityStats _targetStats)
@@ -97,8 +119,8 @@ public class EntityStats : MonoBehaviour {
 
     private int TargetMagicResistCheck(EntityStats _targetStats, int totalMagicalDamage)
     {
-        totalMagicalDamage -= _targetStats.magicResistance.GetValue() + (_targetStats.intelligence.GetValue() * 3);
-        totalMagicalDamage = Mathf.Clamp(totalMagicalDamage, 0, int.MaxValue);
+        float totalMagicResistance = _targetStats.magicResistance.GetValue() + (_targetStats.intelligence.GetValue() * 3);
+        totalMagicalDamage *= Mathf.RoundToInt( (100-totalMagicResistance) / 100);
         return totalMagicalDamage;
     }
 
@@ -113,27 +135,34 @@ public class EntityStats : MonoBehaviour {
         return elementalDamage;
     }
 
+    public void ApplyIgniteDamage(int _damage) => igniteDamage = _damage;
     private void CheckAilments(int fire, int ice, int lightning, EntityStats _targetStats){
         
-        if (Mathf.Max(fire, ice, lightning) <= 0)
-            return;
-            
         int maxDamage = Mathf.Max(fire, ice, lightning);
-        List<int> damages = new List<int> { fire, ice, lightning };
-        List<Action> ailmentsActions = new List<Action> {
-            () => _targetStats.ApplyAilments(true, false, false),   // Fire
-            () => _targetStats.ApplyAilments(false, true, false),  // Ice
-            () => _targetStats.ApplyAilments(false, false, true)   // Lightning
-        };
+        if (maxDamage <= 0)
+            return;
 
-        var indices = damages.Select((value, index) => new { value, index })
-                            .Where(x => x.value == maxDamage)
-                            .Select(x => x.index)
-                            .ToList();
+        List<Action> possibleActions = new List<Action>();
 
-        if (indices.Count > 0) {
-            int randomIndex = UnityEngine.Random.Range(0, indices.Count); 
-            ailmentsActions[indices[randomIndex]](); 
+        if (fire == maxDamage) {
+            possibleActions.Add(() => {
+                _targetStats.ApplyAilments(true, false, false);
+                _targetStats.ApplyIgniteDamage(Mathf.RoundToInt(fire * .1f)); 
+            });
+        }
+        if (ice == maxDamage) 
+            possibleActions.Add(() => {
+                _targetStats.ApplyAilments(false, true, false);
+                _targetStats.entity.SlowEntityBy(slowPercetange, ailmentDuration);
+                });
+        
+        if (lightning == maxDamage) 
+            possibleActions.Add(() => _targetStats.ApplyAilments(false, false, true));
+        
+
+        if (possibleActions.Count > 0) {
+            int randomIndex = UnityEngine.Random.Range(0, possibleActions.Count);
+            possibleActions[randomIndex]();
         }
     }
 
@@ -142,18 +171,21 @@ public class EntityStats : MonoBehaviour {
             return;
         
         if (_ignite){
-            isIgnited = _ignite;
-            ignitedTimer = 8;
+            ailmentTimer = ailmentDuration;
+            entityFX.IgniteFXFor(ailmentDuration);
+            isIgnited = true;
         }
 
         if (_chill){
-            isChilled = _chill;
-            chilledTimer = 2;
+            ailmentTimer = ailmentDuration;
+            entityFX.ChillFxFor(ailmentDuration);
+            isChilled = true;
         }
 
-        if (isShocked){
-            isShocked = _shock;
-            shockedTimer = 2;
+        if (_shock){
+            ailmentTimer = ailmentDuration;
+            entityFX.ShockFXFor(ailmentDuration);
+            isShocked = true;
         }
     }
 
@@ -194,6 +226,8 @@ public class EntityStats : MonoBehaviour {
         
         return false;
     }
+
+    public int GetMaxHealthValue() => maxHealth.GetValue() + vitality.GetValue() * 5;
 
     protected virtual void Die()
     {

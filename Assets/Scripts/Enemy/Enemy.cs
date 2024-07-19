@@ -50,8 +50,19 @@ public class Enemy : Entity
 
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, PlayerLayer);
     public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
-    public virtual void AssignLastAnimName(string _animBoolName){
-        lastAnimBoolName = _animBoolName;
+    public virtual void AssignLastAnimName(string _animBoolName) => lastAnimBoolName = _animBoolName;
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        base.SlowEntityBy(_slowPercentage, _slowDuration);
+        anim.speed *= 1-_slowPercentage;
+        moveSpeed *= 1-_slowPercentage;
+
+        Invoke(nameof(DefaultSpeed), _slowDuration);
+    }
+    public override void DefaultSpeed()
+    {
+        base.DefaultSpeed();
+        moveSpeed = defaultMoveSpeed;
     }
     protected override void OnDrawGizmos() 
     {

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Entity : MonoBehaviour {
 
@@ -30,6 +32,10 @@ public class Entity : MonoBehaviour {
     public SpriteRenderer spriteRenderer {get; private set;}
     public CapsuleCollider2D cd {get; private set;}
     public EntityStats stats {get; private set;}
+    #endregion
+
+    #region Events
+    public Action onFlipped;
     #endregion
 
     public int facingDirection {get; private set;} = 1;
@@ -96,6 +102,9 @@ public class Entity : MonoBehaviour {
         facingDirection *= -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+
+        if (onFlipped != null)
+            onFlipped();
     }
     protected virtual void FlipController(float _x){
         if (_x > 0 && !facingRight)
@@ -106,6 +115,14 @@ public class Entity : MonoBehaviour {
         {
             Flip();
         }
+    }
+
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration){
+
+    }
+
+    public virtual void DefaultSpeed(){
+        anim.speed = 1;
     }
 
     public virtual void Death(){
