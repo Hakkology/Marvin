@@ -3,18 +3,22 @@ using UnityEngine;
 public class ItemObject : MonoBehaviour {
     [SerializeField] private ItemData itemData;
     private SpriteRenderer sr;
+    private PlayerInventory inventory;
 
     void Awake() {
-        sr = GetComponent<SpriteRenderer>();
-        sr.sprite = itemData.Icon;
+        inventory = PlayerInventory.Instance;
+    }
+
+    void OnValidate() {
+         GetComponent<SpriteRenderer>().sprite = itemData.Icon;
+         gameObject.name = "Item - " + itemData.name;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         var player = other.GetComponent<Player>();
         if (player != null){
-            Debug.Log(player.name + " picked up the item" + itemData.name);
+            inventory.AddItem(itemData);
             Destroy(gameObject);
         }
-        
     }
 }
