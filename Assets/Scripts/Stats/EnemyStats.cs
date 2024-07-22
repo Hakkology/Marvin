@@ -10,7 +10,7 @@ public class EnemyStats : EntityStats {
     public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
-        enemy.DamageEffect();
+        //enemy.DamageEffect();
     }
     protected override void Die()
     {

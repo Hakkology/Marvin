@@ -331,6 +331,7 @@ MonoBehaviour:
   isShocked: 0
   isChilled: 0
   ailmentDuration: 4
+  shockPrefab: {fileID: 425129482178473010, guid: af9856ea015a4714fbfca5f3610a1427, type: 3}
   currentHealth: 0
 --- !u!1 &1110244610014178042
 GameObject:

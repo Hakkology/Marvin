@@ -7,6 +7,7 @@ public class CrystalSkillController : MonoBehaviour
     private Animator anim;
     private CircleCollider2D cd;
     private Transform closestTarget;
+    private Player player;
     [SerializeField] LayerMask whatIsEnemy;
     private float crystalExistTimer;
     private bool canExplode;
@@ -17,7 +18,8 @@ public class CrystalSkillController : MonoBehaviour
     private float crystalMaxSize;
     
     public void SetupCrystal(
-        float _crystalDuration, bool _canExplode, bool _canMove, float _moveSpeed, float _growSpeed, float _crystalMaxSize, Transform _closestTarget){
+        float _crystalDuration, bool _canExplode, bool _canMove, float _moveSpeed, float _growSpeed, float _crystalMaxSize, Transform _closestTarget, Player _player){
+        player = _player;
         crystalExistTimer = _crystalDuration;
         moveSpeed = _moveSpeed;
         canExplode = _canExplode;
@@ -68,7 +70,7 @@ public class CrystalSkillController : MonoBehaviour
             var enemy = hit.GetComponent<Enemy>();
 
             if(enemy != null)
-                enemy.DamageEffect();
+                player.stats.DoMagicalDamage(enemy.GetComponent<EntityStats>());
         }
     }
     public void SelfDestroy() => Destroy(gameObject);

@@ -70,7 +70,6 @@ public class Entity : MonoBehaviour {
 
     public void DamageEffect()
     {
-        Debug.Log(this.gameObject.name + "was damaged.");
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
     }

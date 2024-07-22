@@ -43,6 +43,7 @@ public class ThunderStrikeController : MonoBehaviour {
 
     private void DamageAndSelfDestroy()
     {
+        targetStats.ApplyShock();
         targetStats.TakeDamage(damage);
         Destroy(gameObject, .4f);
     }

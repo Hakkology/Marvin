@@ -60,7 +60,7 @@ public class CloneSkillController : MonoBehaviour {
 
             if(enemy != null)
             {
-                enemy.DamageEffect();
+                player.stats.DoDamage(enemy.stats);
 
                 if (createDuplicateClone){
                     if (Random.Range(0, 100) < chanceToDuplicate){
