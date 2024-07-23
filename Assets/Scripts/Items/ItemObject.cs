@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour {
     [SerializeField] private ItemData itemData;
-    private SpriteRenderer sr;
-    private PlayerInventory inventory;
-
-    void Awake() {
-        inventory = PlayerInventory.Instance;
-    }
 
     void OnValidate() {
-         GetComponent<SpriteRenderer>().sprite = itemData.Icon;
-         gameObject.name = "Item - " + itemData.name;
+        if (itemData != null) {
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null) {
+                spriteRenderer.sprite = itemData.Icon;
+                gameObject.name = "Item - " + itemData.name;
+            } else {
+                Debug.LogWarning("SpriteRenderer component not found on the same GameObject as ItemObject.");
+            }
+        } else {
+            
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         var player = other.GetComponent<Player>();
+        var inventory = other.GetComponent<PlayerInventory>();
         if (player != null){
             inventory.AddItem(itemData);
             Destroy(gameObject);
