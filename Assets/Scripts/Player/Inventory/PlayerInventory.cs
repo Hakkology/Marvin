@@ -7,6 +7,10 @@ public class PlayerInventory : MonoBehaviour {
     public List<InventoryItem> inventoryItems;
     public Dictionary<ItemData, InventoryItem> inventoryItemsDict;
 
+    [Header("Inventory UI")]
+    [SerializeField] private Transform inventorySlotParent;
+    private ItemSlotUI[] itemSlot; 
+
     void Awake() {
         if (Instance == null)
             Instance = this;
@@ -17,6 +21,16 @@ public class PlayerInventory : MonoBehaviour {
     void Start() {
         inventoryItems = new List<InventoryItem>();
         inventoryItemsDict = new Dictionary<ItemData, InventoryItem> ();
+
+        itemSlot = inventorySlotParent.GetComponentsInChildren<ItemSlotUI>();
+    }
+
+    private void UpdateSlotUI()
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            itemSlot[i].UpdateSlot(inventoryItems[i]);
+        }
     }
 
     public void AddItem(ItemData item){
@@ -26,6 +40,8 @@ public class PlayerInventory : MonoBehaviour {
             inventoryItems.Add(newItem);
             inventoryItemsDict.Add(item, newItem);
         }
+
+        UpdateSlotUI();
     }
 
     public void RemoveItem(ItemData item){
@@ -37,5 +53,7 @@ public class PlayerInventory : MonoBehaviour {
             }
             else value.RemoveStack();
         }
+
+        UpdateSlotUI();
     }
 }
