@@ -18,9 +18,8 @@ public class ItemObject : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        var player = other.GetComponent<Player>();
         var inventory = other.GetComponent<PlayerInventory>();
-        if (player != null){
+        if (inventory != null){
             inventory.AddItem(itemData);
             Destroy(gameObject);
         }

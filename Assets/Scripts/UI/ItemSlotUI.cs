@@ -11,6 +11,7 @@ public class ItemSlotUI : MonoBehaviour
     public void UpdateSlot(InventoryItem newItem)
     {
         this.item = newItem;
+        itemImage.color = Color.white;  
 
         if (item != null)
         {
