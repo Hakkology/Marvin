@@ -4,6 +4,10 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour {
     
     public static PlayerInventory Instance { get; private set;}
+
+    public List<InventoryItem> equipmentItems;
+    public Dictionary<EquipmentData, InventoryItem> equipmentItemsDict;
+
     public List<InventoryItem> inventoryItems;
     public Dictionary<ItemData, InventoryItem> inventoryItemsDict;
 
@@ -13,9 +17,11 @@ public class PlayerInventory : MonoBehaviour {
     [Header("Inventory UI")]
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
+    [SerializeField] private Transform equipmentSlotParent;
 
     private ItemSlotUI[] InventoryItemSlot; 
     private ItemSlotUI[] StashItemSlot;
+    private EquipmentSlotUI[] EquipmentItemSlot;
 
     void Awake() {
         if (Instance == null)
@@ -25,6 +31,9 @@ public class PlayerInventory : MonoBehaviour {
     }
 
     void Start() {
+        equipmentItems = new List<InventoryItem>();
+        equipmentItemsDict = new Dictionary<EquipmentData, InventoryItem>();
+
         inventoryItems = new List<InventoryItem>();
         inventoryItemsDict = new Dictionary<ItemData, InventoryItem> ();
 
@@ -33,8 +42,40 @@ public class PlayerInventory : MonoBehaviour {
 
         InventoryItemSlot = inventorySlotParent.GetComponentsInChildren<ItemSlotUI>();
         StashItemSlot = stashSlotParent.GetComponentsInChildren<ItemSlotUI>();
+        EquipmentItemSlot = equipmentSlotParent.GetComponentsInChildren<EquipmentSlotUI>();
     }
 
+    public void EquipItem(ItemData _item) 
+    {
+        EquipmentData newEquipment = _item as EquipmentData;
+        InventoryItem newItem = new InventoryItem (newEquipment);
+
+        EquipmentData oldEquipment = null;
+
+        foreach (KeyValuePair<EquipmentData, InventoryItem> item in equipmentItemsDict)
+        {
+            if (item.Key.equipmentType == newEquipment.equipmentType)
+            {
+                oldEquipment = item.Key;
+            }
+        }
+
+        if (oldEquipment != null)
+        {
+            if (equipmentItemsDict.TryGetValue(oldEquipment, out InventoryItem value))
+            {
+                equipmentItems.Remove(value);
+                equipmentItemsDict.Remove(oldEquipment);
+            }
+            AddToInventory(oldEquipment);
+        }
+
+        equipmentItems.Add (newItem);
+        equipmentItemsDict.Add (newEquipment, newItem);
+        RemoveInventoryItem(_item);
+
+        UpdateInventoryUI();
+    }
     public void AddItem(ItemData item)
     {
         if (item.itemType == ItemType.Equipment)
@@ -99,6 +140,11 @@ public class PlayerInventory : MonoBehaviour {
 
     private void UpdateInventoryUI()
     {
+        for (int i = 0; i < InventoryItemSlot.Length; i++)
+        {
+            InventoryItemSlot[i].CleanUpSlot();
+        }
+
         for (int i = 0; i < inventoryItems.Count; i++)
         {
             InventoryItemSlot[i].UpdateSlot(inventoryItems[i]);
@@ -107,6 +153,11 @@ public class PlayerInventory : MonoBehaviour {
 
     private void UpdateStashUI()
     {
+        for (int i = 0; i < StashItemSlot.Length; i++)
+        {
+            InventoryItemSlot[i].CleanUpSlot();
+        }
+
         for (int i = 0; i < stashItems.Count; i++)
         {
             StashItemSlot[i].UpdateSlot(stashItems[i]);
