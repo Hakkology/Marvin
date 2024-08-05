@@ -63,20 +63,22 @@ public List<InventoryItem> equipmentItems = new List<InventoryItem>();
 
         equipmentItems.Add(newItem);
         equipmentItemsDict.Add(newEquipment, newItem);
+        newEquipment.AddModifiers();
         UpdateEquipmentUI();
 
         RemoveInventoryItem(_item);
     }
 
-    private void UnequipItem(EquipmentData oldEquipment)
+    public void UnequipItem(EquipmentData oldEquipment)
     {
         if (oldEquipment != null)
         {
             if (equipmentItemsDict.TryGetValue(oldEquipment, out InventoryItem value))
             {
+                AddToInventory(oldEquipment);
                 equipmentItems.Remove(value);
                 equipmentItemsDict.Remove(oldEquipment);
-                AddToInventory(oldEquipment);
+                oldEquipment.RemoveModifiers();
             }
         }
     }
@@ -144,6 +146,40 @@ public List<InventoryItem> equipmentItems = new List<InventoryItem>();
         }
 
         UpdateStashUI();
+    }
+
+    public bool CanCraft(EquipmentData itemToCraft, List<InventoryItem> requiredMaterials){
+
+        List<InventoryItem> materialsToRemove = new List<InventoryItem>();
+
+        for (int i = 0; i < requiredMaterials.Count; i++)
+        {
+            if (stashItemsDict.TryGetValue(requiredMaterials[i].data, out InventoryItem stashValue))
+            {
+                if (stashValue.stackSize < requiredMaterials[i].stackSize)
+                {
+                    Debug.Log("Not enough materials");
+                    return false;
+                }
+                else
+                {
+                    materialsToRemove.Add(stashValue);
+                }
+            }
+            else 
+            {
+                Debug.Log("Required Material Not Available");
+                return false;
+            }
+        }
+
+        for (int i = 0; i < materialsToRemove.Count; i++)
+        {
+            RemoveStashItem(materialsToRemove[i].data);
+        }
+
+        AddItem(itemToCraft);
+        return true;
     }
 
     private void UpdateInventoryUI()
