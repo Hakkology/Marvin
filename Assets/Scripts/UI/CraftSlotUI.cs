@@ -10,6 +10,6 @@ public class CraftSlotUI : ItemSlotUI {
     {
         EquipmentData craftData = item.data as EquipmentData;
 
-        if(PlayerInventory.Instance.CanCraft(craftData, craftData.craftingMaterials)) {}
+        PlayerInventory.Instance.CanCraft(craftData, craftData.craftingMaterials);
     }
 }

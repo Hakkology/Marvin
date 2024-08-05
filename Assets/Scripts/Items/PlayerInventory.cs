@@ -199,7 +199,7 @@ public List<InventoryItem> equipmentItems = new List<InventoryItem>();
     {
         for (int i = 0; i < StashItemSlot.Length; i++)
         {
-            InventoryItemSlot[i].CleanUpSlot();
+            StashItemSlot[i].CleanUpSlot();
         }
 
         for (int i = 0; i < stashItems.Count; i++)
