@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyStats : EntityStats {
 
     private Enemy enemy;
+    private ItemDrop itemDrop;
 
     [Header("Level Details")]
     [SerializeField] private int level = 1;
@@ -15,6 +16,7 @@ public class EnemyStats : EntityStats {
 
         base.Start();
         enemy = GetComponent<Enemy>();
+        itemDrop = GetComponent<ItemDrop>();
     }
 
     private void ApplyLevelModifiers() {
@@ -59,5 +61,6 @@ public class EnemyStats : EntityStats {
     {
         base.Die();
         enemy.Death();
+        itemDrop.GenerateDrop();
     }
 }

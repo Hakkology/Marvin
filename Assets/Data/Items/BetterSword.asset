@@ -15,6 +15,7 @@ MonoBehaviour:
   itemType: 1
   ItemName: better sword
   Icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 5
   equipmentType: 0
   strength: 0
   agility: 0
@@ -30,3 +31,4 @@ MonoBehaviour:
   armor: 0
   evasion: 0
   magicResistance: 0
+  craftingMaterials: []

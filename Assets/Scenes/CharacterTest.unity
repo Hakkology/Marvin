@@ -921,7 +921,7 @@ PrefabInstance:
     - target: {fileID: 5300574144064513846, guid: 7218f25479ff2694084d0ed402c41683, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -104826009, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+      objectReference: {fileID: 1025795234, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
     - target: {fileID: 5300574144064513846, guid: 7218f25479ff2694084d0ed402c41683, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -1973,6 +1973,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -973012730, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+    - target: {fileID: 5300574144064513846, guid: 7218f25479ff2694084d0ed402c41683, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3287,7 +3291,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 7
+    baseValue: 37
     modifiers: 
   iceDamage:
     baseValue: 3
@@ -3339,6 +3343,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1184974882}
     m_Modifications:
+    - target: {fileID: -7224299716653873833, guid: cc4ab97247a69574891c58c146a20559, type: 3}
+      propertyPath: amountOfItems
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1106321268981066568, guid: cc4ab97247a69574891c58c146a20559, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (1)
