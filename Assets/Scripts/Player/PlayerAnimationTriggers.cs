@@ -19,9 +19,18 @@ public class PlayerAnimationTriggers : MonoBehaviour
             if(enemy != null){
 
                 player.stats.DoDamage(enemy.stats);
-                PlayerInventory.Instance.GetEquipment(EquipmentType.Weapon).ExecuteItemEffect();
+                WeaponEffect(enemy.transform);
             }
         }
+    }
+
+    private void WeaponEffect(Transform transform){
+        EquipmentData equipmentData= PlayerInventory.Instance.GetEquipment(EquipmentType.Weapon);
+        if (equipmentData!= null)
+        {
+            equipmentData.ExecuteItemEffect(transform);
+        }
+
     }
 
     private void ThrowSword(){

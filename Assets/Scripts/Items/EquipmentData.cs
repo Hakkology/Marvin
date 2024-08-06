@@ -40,10 +40,10 @@ public class EquipmentData : ItemData {
     [Header("Craft Requirements")]
     public List<InventoryItem> craftingMaterials;
 
-    public void ExecuteItemEffect(){
+    public void ExecuteItemEffect(Transform enemyPosition){
         foreach (var item in itemEffects)
         {
-            item.ExecuteEffect();
+            item.ExecuteEffect(enemyPosition);
         }
     }
 

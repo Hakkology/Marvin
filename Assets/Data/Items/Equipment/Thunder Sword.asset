@@ -17,7 +17,8 @@ MonoBehaviour:
   Icon: {fileID: 367297872, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropChance: 0
   equipmentType: 0
-  itemEffects: []
+  itemEffects:
+  - {fileID: 11400000, guid: 901e6e1c40c442d1eb1e21f65441a611, type: 2}
   strength: 0
   agility: 0
   intelligence: 0
