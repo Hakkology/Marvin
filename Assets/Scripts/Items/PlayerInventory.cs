@@ -126,6 +126,18 @@ public class PlayerInventory : MonoBehaviour {
         UpdateStashUI();
     }
 
+    public void RemoveItem(ItemData item) {
+        switch (item.itemType) {
+            case ItemType.Equipment:
+                RemoveInventoryItem(item);
+                break;
+            case ItemType.Material:
+                RemoveStashItem(item);
+                break;
+        }
+    }
+
+
     public void RemoveInventoryItem(ItemData item)
     {
         if (inventoryItemsDict.TryGetValue (item, out InventoryItem value)){
