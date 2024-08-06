@@ -5,8 +5,9 @@ public class PlayerInventory : MonoBehaviour {
     
     public static PlayerInventory Instance { get; private set;}
 
-public List<InventoryItem> equipmentItems = new List<InventoryItem>();
+    public List<InventoryItem> equipmentItems = new List<InventoryItem>();
     public Dictionary<EquipmentData, InventoryItem> equipmentItemsDict = new Dictionary<EquipmentData, InventoryItem>();
+    public List<ItemData> startingEquipment = new List<ItemData>();
 
     public List<InventoryItem> inventoryItems = new List<InventoryItem>();
     public Dictionary<ItemData, InventoryItem> inventoryItemsDict = new Dictionary<ItemData, InventoryItem>();
@@ -34,6 +35,11 @@ public List<InventoryItem> equipmentItems = new List<InventoryItem>();
     void Start()
     {
         InitializeSlots();
+
+        for (int i = 0; i < startingEquipment.Count; i++)
+        {
+            AddItem(startingEquipment[i]);
+        }
     }
 
     private void InitializeSlots()
@@ -180,6 +186,10 @@ public List<InventoryItem> equipmentItems = new List<InventoryItem>();
 
         AddItem(itemToCraft);
         return true;
+    }
+
+    public List<InventoryItem> GetEquipmentItems(){
+        return equipmentItems;
     }
 
     private void UpdateInventoryUI()

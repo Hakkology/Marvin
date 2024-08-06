@@ -1,10 +1,12 @@
 public class PlayerStats : EntityStats
 {
     private Player player;
+    private PlayerItemDrop itemDrop;
     protected override void Start()
     {
         base.Start();
         player = GetComponent<Player>();
+        itemDrop = GetComponent<PlayerItemDrop>();
     }
 
     public override void TakeDamage(int _damage)
@@ -17,5 +19,6 @@ public class PlayerStats : EntityStats
     {
         base.Die();
         player.Death();
+        itemDrop.GenerateDrop();
     }
 }

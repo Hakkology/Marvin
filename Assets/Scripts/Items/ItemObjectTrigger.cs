@@ -10,6 +10,9 @@ public class ItemObjectTrigger : MonoBehaviour
         var inventory = other.GetComponent<PlayerInventory>();
         if (inventory != null)
         {
+            if (other.GetComponent<EntityStats>().isDead)
+                return;
+            
             itemObject.PickupItem(inventory);
         }
     }

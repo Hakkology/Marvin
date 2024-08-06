@@ -47,7 +47,7 @@ public class EntityStats : MonoBehaviour {
 
     public int currentHealth;
     public Action onHealthChanged;
-    protected bool isDead;
+    public bool isDead {get; private set;}
 
     void Awake() {
         entityFX = GetComponent<EntityFX>();

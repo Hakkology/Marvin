@@ -3111,6 +3111,7 @@ GameObject:
   - component: {fileID: 797423577}
   - component: {fileID: 797423578}
   - component: {fileID: 797423579}
+  - component: {fileID: 797423580}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -3330,11 +3331,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentItems: []
+  startingEquipment:
+  - {fileID: 11400000, guid: 39d28ad9cf843a0408f710839f8caa80, type: 2}
+  - {fileID: 11400000, guid: 39d28ad9cf843a0408f710839f8caa80, type: 2}
+  - {fileID: 11400000, guid: 2768281f97a8631349ce03c827d51c18, type: 2}
+  - {fileID: 11400000, guid: 2768281f97a8631349ce03c827d51c18, type: 2}
+  - {fileID: 11400000, guid: e593a43f78060ca258a37e2a0f47312d, type: 2}
+  - {fileID: 11400000, guid: 83abeb42780125a6f88878dd8ac09e7e, type: 2}
+  - {fileID: 11400000, guid: 52c80cfefbfca7360a6945c734017f70, type: 2}
+  - {fileID: 11400000, guid: 39d28ad9cf843a0408f710839f8caa80, type: 2}
   inventoryItems: []
   stashItems: []
   inventorySlotParent: {fileID: 1310816013}
   stashSlotParent: {fileID: 1031220277}
   equipmentSlotParent: {fileID: 552223293}
+--- !u!114 &797423580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797423569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f1ba1e7a4f73923a6894ca3e53664f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfItems: 0
+  possibleDrop: []
+  dropPrefab: {fileID: 41064226067483517, guid: 7218f25479ff2694084d0ed402c41683, type: 3}
+  chanceToLoseItems: 99
 --- !u!1001 &800121114
 PrefabInstance:
   m_ObjectHideFlags: 0
