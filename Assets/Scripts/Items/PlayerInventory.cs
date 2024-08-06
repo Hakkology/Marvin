@@ -204,6 +204,21 @@ public class PlayerInventory : MonoBehaviour {
         return equipmentItems;
     }
 
+    public EquipmentData GetEquipment(EquipmentType type){
+
+        EquipmentData equipmentData = null;
+
+        foreach (KeyValuePair<EquipmentData, InventoryItem> item in equipmentItemsDict)
+        {
+            if (item.Key.equipmentType == type)
+            {
+                equipmentData = item.Key;
+            }
+        }
+
+        return equipmentData;
+    }
+
     private void UpdateInventoryUI()
     {
         for (int i = 0; i < InventoryItemSlot.Length; i++)

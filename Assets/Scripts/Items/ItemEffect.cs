@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemEffect : MonoBehaviour
+[CreateAssetMenu(fileName = "Items", menuName = "Items/ItemEffect", order = 0)]
+public class ItemEffect : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public virtual void ExecuteEffect(){
+        Debug.Log("Effect executed.");
     }
 }
