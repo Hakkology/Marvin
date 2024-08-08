@@ -3341,6 +3341,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52c80cfefbfca7360a6945c734017f70, type: 2}
   - {fileID: 11400000, guid: 39d28ad9cf843a0408f710839f8caa80, type: 2}
   - {fileID: 11400000, guid: d0875c25d5dcfbc9f83fd1d52c6aee8f, type: 2}
+  - {fileID: 11400000, guid: dab2ae49e76646bafb4b97f094515533, type: 2}
   inventoryItems: []
   stashItems: []
   inventorySlotParent: {fileID: 1310816013}
